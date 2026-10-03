@@ -1,0 +1,74 @@
+:root {
+  --bg: #eef2f1;
+  --paper: #ffffff;
+  --ink: #1d2b2a;
+  --muted: #5d706e;
+  --line: #cfdad8;
+  --accent: #0f6b63;
+  --warn: #b3261e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.5;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+h1 { margin: 0 0 0.25rem; font-size: 2rem; }
+h2 { margin: 0 0 0.4rem; font-size: 1.1rem; }
+.intro { margin: 0 0 1.5rem; color: var(--muted); }
+
+/* lets the table scroll sideways on small phones instead of breaking the page */
+.table-wrap { overflow-x: auto; background: var(--paper); border: 1px solid var(--line); }
+
+table { width: 100%; border-collapse: collapse; }
+
+th, td {
+  padding: 0.6rem 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+
+th { background: var(--accent); color: #fff; font-weight: normal; white-space: nowrap; }
+th small { opacity: 0.8; }
+td:nth-child(2) { text-align: left; white-space: nowrap; }
+
+input {
+  width: 4.5rem;
+  padding: 0.4rem;
+  font: inherit;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+
+input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* added by JavaScript when someone types a score that is too high */
+input.invalid { border-color: var(--warn); background: #fdecea; }
+
+.total, .grade { font-weight: bold; }
+.grade { font-size: 1.2rem; color: var(--accent); }
+.grade.fail { color: var(--warn); }
+
+.message { min-height: 1.5rem; margin: 0.75rem 0 0; color: var(--warn); }
+
+.key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  color: var(--muted);
+}
+
+.key p { margin: 0; }

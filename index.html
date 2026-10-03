@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Score Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Student Score Calculator</h1>
+    <p class="intro">Type in the scores. Total and grade update as you type.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>S/N</th>
+            <th>Name</th>
+            <th>CA 1 <small>/10</small></th>
+            <th>CA 2 <small>/10</small></th>
+            <th>CA 3 <small>/10</small></th>
+            <th>Exam <small>/70</small></th>
+            <th>Total <small>/100</small></th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Row 1. Rows 2-5 are the same, only the number and name change. -->
+          <tr>
+            <td>1</td>
+            <td>Student 1</td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="70" min="0" max="70"></td>
+            <td class="total">-</td>
+            <td class="grade">-</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Student 2</td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="70" min="0" max="70"></td>
+            <td class="total">-</td>
+            <td class="grade">-</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Student 3</td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="70" min="0" max="70"></td>
+            <td class="total">-</td>
+            <td class="grade">-</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Student 4</td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="70" min="0" max="70"></td>
+            <td class="total">-</td>
+            <td class="grade">-</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Student 5</td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="10" min="0" max="10"></td>
+            <td><input type="number" class="score" data-max="70" min="0" max="70"></td>
+            <td class="total">-</td>
+            <td class="grade">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p id="message" class="message" aria-live="polite"></p>
+
+    <section class="key">
+      <div>
+        <h2>Score distribution</h2>
+        <p>CA 1, CA 2, CA 3: 10 each<br>Exam: 70<br>Total = CA 1 + CA 2 + CA 3 + Exam</p>
+      </div>
+      <div>
+        <h2>Grading system</h2>
+        <p>70 to 100: A<br>60 to 69: B<br>50 to 59: C<br>45 to 49: D<br>40 to 44: E<br>0 to 39: F</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
