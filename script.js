@@ -1,9 +1,11 @@
-
 const scoreInputs = document.querySelectorAll(".score");
 const message = document.getElementById("message");
 
-
 function getGrade(total) {
+  if (Number.isNaN(total)) {
+    return "F";
+  }
+
   if (total >= 70) {
     return "A";
   } else if (total >= 60) {
@@ -19,27 +21,47 @@ function getGrade(total) {
   }
 }
 
-
 function validate(input) {
-  const max = Number(input.dataset.max); 
-  const value = Number(input.value);
+  const max = Number(input.dataset.max);
+  const rawValue = input.value.trim();
 
-  if (input.value !== "" && value > max) {
-    input.value = max; 
+  if (rawValue === "") {
+    input.classList.remove("invalid");
+    message.textContent = "";
+    return;
+  }
+
+  const value = Number(rawValue);
+
+  if (!Number.isFinite(value)) {
+    input.classList.add("invalid");
+    message.textContent = "Please enter a valid number.";
+    return;
+  }
+
+  if (value > max) {
+    input.value = max;
     input.classList.add("invalid");
     message.textContent = "That score is too high. The maximum here is " + max + ".";
-  } else if (value < 0) {
+    return;
+  }
+
+  if (value < 0) {
     input.value = 0;
     input.classList.add("invalid");
     message.textContent = "Scores cannot be negative.";
-  } else {
-    input.classList.remove("invalid");
-    message.textContent = "";
+    return;
   }
+
+  input.classList.remove("invalid");
+  message.textContent = "";
 }
 
-
 function calculateRow(row) {
+  if (!row) {
+    return;
+  }
+
   const inputs = row.querySelectorAll(".score");
   const totalCell = row.querySelector(".total");
   const gradeCell = row.querySelector(".grade");
@@ -48,13 +70,19 @@ function calculateRow(row) {
   let hasAnyScore = false;
 
   inputs.forEach(function (input) {
-    if (input.value !== "") {
-      hasAnyScore = true;
-    }
-    
-    total += Number(input.value) || 0;
-  });
+    const rawValue = input.value.trim();
 
+    if (rawValue === "") {
+      return;
+    }
+
+    const numericValue = Number(rawValue);
+
+    if (Number.isFinite(numericValue)) {
+      hasAnyScore = true;
+      total += numericValue;
+    }
+  });
 
   if (!hasAnyScore) {
     totalCell.textContent = "-";
@@ -66,15 +94,12 @@ function calculateRow(row) {
   const grade = getGrade(total);
   totalCell.textContent = total;
   gradeCell.textContent = grade;
-  gradeCell.classList.toggle("fail", grade === "F"); 
+  gradeCell.classList.toggle("fail", grade === "F");
 }
-
 
 scoreInputs.forEach(function (input) {
   input.addEventListener("input", function () {
     validate(input);
-
-
     const row = input.closest("tr");
     calculateRow(row);
   });
